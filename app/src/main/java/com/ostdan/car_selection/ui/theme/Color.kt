@@ -18,3 +18,5 @@ val Grey = Color(0xFF7C7F80)
 
 val Grey60 = Color(0xFF98A2A3)
 val Grey90 = Color(0xFFE8EAEA)
+
+val DefaultShadow = Color(0x00000008)

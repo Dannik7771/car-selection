@@ -6,12 +6,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CheckGroupResponse (
-    @SerialName("check_list")
-    val checkList: ArrayList<CheckResponse>? = null,
+    @SerialName("checkGroupId")
+    val checkGroupId: String? = null,
+    @SerialName("checkList")
+    val checkList: List<CheckResponse>? = null,
     @SerialName("name")
     val name: String? = null,
-    @SerialName("type")
-    val type: String? = null,
     @SerialName("completion")
     val completion: Float? = null,
     @SerialName("image")

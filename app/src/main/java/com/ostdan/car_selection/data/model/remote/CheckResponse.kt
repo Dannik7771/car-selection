@@ -5,7 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CheckResponse (
-    @SerialName("step_list")
+    @SerialName("checkId")
+    val checkId: String? = null,
+    @SerialName("stepList")
     val stepList: ArrayList<StepResponse>? = null,
     @SerialName("title")
     val title: String? = null,
@@ -13,10 +15,10 @@ data class CheckResponse (
     val status: String? = null,
     @SerialName("description")
     val description: String? = null,
-    @SerialName("description_warning")
-    val description_warning: String? = null,
-    @SerialName("description_alert")
-    val description_alert: String? = null,
+    @SerialName("descriptionWarning")
+    val descriptionWarning: String? = null,
+    @SerialName("descriptionAlert")
+    val descriptionAlert: String? = null,
     @SerialName("category")
     val category: String? = null,
     @SerialName("images")

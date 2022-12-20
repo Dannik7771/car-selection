@@ -4,7 +4,7 @@ import com.ostdan.car_selection.data.mapper.CheckSessionMapper
 import com.ostdan.car_selection.data.model.remote.service.CarCheckService
 import com.ostdan.car_selection.data.repository.CarCheckRepositoryImpl
 import com.ostdan.car_selection.domain.repository.CarCheckRepository
-import com.ostdan.car_selection.utilities.FlowResourceCallAdapterFactory
+import com.ostdan.car_selection.data.utilities.FlowResourceCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

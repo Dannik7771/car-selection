@@ -11,7 +11,6 @@ class CheckGroupMapper @Inject constructor(
         CheckGroupDTO(
             checkList = response.checkList?.map{checkMapper.map(it)}.orEmpty(),
             name = response.name.orEmpty(),
-            type = response.type.orEmpty(),
             completion = response.completion ?: 0.0f,
             image = response.image.orEmpty()
         )

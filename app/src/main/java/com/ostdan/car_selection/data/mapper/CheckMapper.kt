@@ -13,8 +13,8 @@ class CheckMapper @Inject constructor(
             title = response.title.orEmpty(),
             status = response.status.orEmpty(),
             description = response.description.orEmpty(),
-            description_warning = response.description_warning.orEmpty(),
-            description_alert = response.description_alert.orEmpty(),
+            description_warning = response.descriptionWarning.orEmpty(),
+            description_alert = response.descriptionAlert.orEmpty(),
             category = response.category.orEmpty(),
             images = response.images.orEmpty()
         )

@@ -5,11 +5,11 @@ import com.ostdan.car_selection.domain.model.CheckSessionDTO
 import javax.inject.Inject
 
 class CheckSessionMapper @Inject constructor(
-    private val checkGroupMapper: CheckGroupMapper
+    private val checkGroupPreviewMapper: CheckGroupPreviewMapper
 ) {
     fun map(response: CheckSessionResponse): CheckSessionDTO =
         CheckSessionDTO(
-            checkGroupList = response.checkGroupList?.map{checkGroupMapper.map(it)}.orEmpty(),
+            checkGroupPreviewList = response.checkGroupPreviewList?.map{checkGroupPreviewMapper.map(it)}.orEmpty(),
             govNumber = response.govNumber.orEmpty(),
             vin = response.vin.orEmpty(),
             searchSuccessful = response.searchSuccessful ?: false

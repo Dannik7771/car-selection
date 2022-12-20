@@ -1,5 +1,6 @@
-package com.ostdan.car_selection.utilities
+package com.ostdan.car_selection.data.utilities
 
+import android.util.Log
 import com.ostdan.car_selection.data.repository.Resource
 import com.ostdan.car_selection.data.repository.Resource.Error
 import kotlinx.coroutines.ExperimentalCoroutinesApi

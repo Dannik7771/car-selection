@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ostdan.car_selection.domain.usecase.FetchCheckSessionUseCase
-import com.ostdan.car_selection.presentation.state.ViewState
+import com.ostdan.car_selection.presentation.state.ViewStateCarSession
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -20,14 +20,17 @@ class MainViewModel @Inject constructor(
 ): ViewModel() {
     private val TAG = "MainViewModel"
 
-    private val _state = MutableStateFlow(ViewState(isLoading = false, data = null))
+    private val _state = MutableStateFlow(ViewStateCarSession(isLoading = false, checkSession = null))
 
     private val maxCharInVIN: Int = 17 //digits in VIN
 
-    val state: StateFlow<ViewState>
+    val state: StateFlow<ViewStateCarSession>
         get() = _state
+    var vinFieldState by mutableStateOf("")
+        private set
 
     fun fetchCheckSession() {
+        Log.d(TAG, "fetchCheckSession")
         if (vinFieldState.length == maxCharInVIN)
             viewModelScope.launch {
                 fetchCheckSessionUseCase(
@@ -37,20 +40,16 @@ class MainViewModel @Inject constructor(
                     .flowOn(Dispatchers.Default)
                     .onStart {
                         Log.d(TAG, "Flow started")
-                        _state.value.isLoading = true
+                        _state.value = ViewStateCarSession(true, null)
                     }
                     .onCompletion {
                         Log.d(TAG, "Flow completed")
-                        _state.value.isLoading = false
                     }
                     .collect { checkSession ->
-                        _state.value.data = checkSession
+                        _state.value = ViewStateCarSession(false, checkSession)
                     }
             }
     }
-
-    var vinFieldState by mutableStateOf("")
-        private set
 
     fun updateTextFieldVIN(input: String) {
         var value: String = input

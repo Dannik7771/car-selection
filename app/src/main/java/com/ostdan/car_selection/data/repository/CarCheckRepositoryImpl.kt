@@ -1,5 +1,6 @@
 package com.ostdan.car_selection.data.repository
 
+import android.util.Log
 import com.ostdan.car_selection.data.mapper.CheckSessionMapper
 import com.ostdan.car_selection.data.model.remote.service.CarCheckService
 import com.ostdan.car_selection.domain.model.CheckSessionDTO
@@ -21,10 +22,10 @@ class CarCheckRepositoryImpl @Inject constructor(
         return flow {
             carCheckService.getCheckSession(vin, govNumber, accessToken).collect { resource ->
                 if (resource is Resource.Success) {
-                Resource.Success(
-                    resource.message,
-                    checkSessionMapper.map(resource.data)
-                )}
+                    emit(
+                        checkSessionMapper.map(resource.data)
+                    )
+                }
             }
         }
     }

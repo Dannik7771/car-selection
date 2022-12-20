@@ -1,4 +1,4 @@
-package com.ostdan.car_selection.utilities
+package com.ostdan.car_selection.data.utilities
 
 import com.ostdan.car_selection.data.repository.Resource
 import kotlinx.coroutines.flow.Flow

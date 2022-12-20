@@ -1,4 +1,4 @@
-package com.ostdan.car_selection.presentation.screens.elements
+package com.ostdan.car_selection.presentation.screens.main.elements
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

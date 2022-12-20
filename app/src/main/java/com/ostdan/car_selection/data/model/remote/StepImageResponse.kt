@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class StepImageResponse (
+    @SerialName("stepImageId")
+    val stepImageId: String? = null,
     @SerialName("image")
     val image: String? = null,
     @SerialName("description")

@@ -6,12 +6,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class CheckSessionResponse (
-    @SerialName("check_group_list")
-    val checkGroupList: ArrayList<CheckGroupResponse>? = null,
-    @SerialName("gov_number")
+    @SerialName("checkSessionId")
+    val checkSessionId: String? = null,
+    @SerialName("checkGroupPreviewList")
+    val checkGroupPreviewList: List<CheckGroupPreviewResponse>? = null,
+    @SerialName("govNumber")
     val govNumber: String? = null,
     @SerialName("vin")
     val vin: String? = null,
-    @SerialName("search_successful")
+    @SerialName("searchSuccessful")
     val searchSuccessful: Boolean? = null
 )
