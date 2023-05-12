@@ -1,19 +1,22 @@
 package com.ostdan.car_selection.presentation.screens.main.elements
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
+import com.ostdan.car_selection.R
 import com.ostdan.car_selection.domain.model.CheckGroupDTO
 import com.ostdan.car_selection.presentation.components.CardView
-import com.ostdan.car_selection.ui.theme.DefaultShadow
-import com.ostdan.car_selection.ui.theme.Grey60
+import com.ostdan.car_selection.ui.theme.CarselectionTheme
+import com.ostdan.car_selection.ui.theme.DarkBlue36
 
 @Composable
 fun CheckGroupCard(
@@ -21,32 +24,37 @@ fun CheckGroupCard(
     checkGroupDTO: CheckGroupDTO
 ) {
     CardView(
-        color = MaterialTheme.colorScheme.surface
+        color = MaterialTheme.colorScheme.surface,
+        modifier = Modifier
+            .clickable { /* обработчик клика */ }
+            .padding(5.dp)
+            .widthIn(min = 100.dp, max = 100.dp)
+            .heightIn(min = 100.dp, max = 100.dp)
     ) {
-        TextButton (
-            modifier = Modifier
-                .padding(5.dp)
-                .widthIn(min = 100.dp, max = 100.dp)
-                .heightIn(min = 100.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.surface),
-            shape = RoundedCornerShape(10.dp),
-            onClick = {/*TODO: Add NavController*/}
-        ) {
-            /*Icon(
-                Icons.Filled.Warning,
-                tint = MaterialTheme.colorScheme.error,
-                contentDescription = "Возникла проблема",
-                modifier = Modifier.align(Alignment.TopEnd))*/
+        Column(modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally)
+        {
+            Image(
+                painter = painterResource(id = R.drawable.mock),
+                contentDescription = stringResource(id = R.string.mock),
+                modifier = Modifier.weight(2f)
+            )
             Text(
                 text = checkGroupDTO.name,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.labelSmall,
                 textAlign = TextAlign.Center,
-                color = Grey60,
-                //softWrap = true,
-                modifier = Modifier.align(Alignment.Bottom)
+                color = DarkBlue36,
+                modifier = Modifier.weight(1f)
             )
         }
-
     }
 }
+
+@Preview(showBackground = false)
+@Composable
+fun CheckGroupCardPreview() {
+    CarselectionTheme {
+        //CheckGroupCard()
+    }
+}
+

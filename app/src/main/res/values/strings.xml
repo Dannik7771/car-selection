@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Подбор авто</string>
+    <string name="mock">mock_resource</string>
 </resources>

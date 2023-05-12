@@ -6,7 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -22,10 +22,14 @@ fun CardView(
     color: Color = MaterialTheme.colorScheme.primary,
     content: @Composable () -> Unit
 ) {
-    Row(
+    Box(
         modifier = Modifier
             .widthIn(min = 20.dp)
-            .clip(shape)
+            .shadow(
+                elevation = 10.dp,
+                shape = shape,
+                spotColor = SpotColor
+            )
             .background(color)
             .then(modifier))
         {
@@ -40,10 +44,13 @@ fun CardView(
     brush : Brush = Brush.linearGradient(listOf(Grey60, Grey90)),
     content: @Composable () -> Unit
 ) {
-    Row(
+    Box(
         modifier = Modifier
             .widthIn(min = 20.dp)
-            .clip(shape)
+            .shadow(
+                elevation = 10.dp,
+                shape = shape
+            )
             .background(brush)
             .then(modifier))
     {
@@ -70,15 +77,8 @@ fun CardView(
 @Composable
 fun CardViewPreview() {
     CarselectionTheme {
-        CardView(
-            brush = Brush.horizontalGradient(
-                colors = listOf(
-                    Blue50,
-                    Blue70
-                )
-            )
-        ) {
-            Text(text = "Sample")
+        CardView(color = MaterialTheme.colorScheme.surface) {
+            Text("Тут что-то написано")
         }
     }
 }

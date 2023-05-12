@@ -3,6 +3,7 @@ package com.ostdan.car_selection
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.ostdan.car_selection.presentation.screens.RootScreen
 import com.ostdan.car_selection.presentation.screens.main.MainScreen
 import com.ostdan.car_selection.ui.theme.CarselectionTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,7 +15,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CarselectionTheme {
-                MainScreen()
+                RootScreen()
             }
         }
     }

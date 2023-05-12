@@ -1,26 +1,30 @@
 package com.ostdan.car_selection.presentation.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.ostdan.car_selection.presentation.screens.Screens
 import com.ostdan.car_selection.presentation.screens.main.MainScreen
 
 @Composable
-fun NavGraph(
+fun AppNavGraph(
     navController: NavHostController,
-    paddings: PaddingValues,
-    setFabOnClick: (() -> Unit) -> Unit
+    startDestination: String,
+    paddingValues: PaddingValues
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Main.route,
+        startDestination = startDestination,
+        Modifier.padding(paddingValues)
     ) {
-        composable(route = Screen.Main.route) {
+        composable(route = Screens.Main.name) {
             MainScreen(/*navController = navController, paddings, setFabOnClick*/)
         }
-        composable(route = Screen.Checkpoints.route) {
+        composable(route = Screens.Checkpoints.name) {
             //SettingsScreen( paddings)
         }
     }

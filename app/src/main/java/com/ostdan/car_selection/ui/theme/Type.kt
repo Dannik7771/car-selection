@@ -6,6 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.Hyphens
 import androidx.compose.ui.unit.sp
 import com.ostdan.car_selection.R
 
@@ -37,12 +38,18 @@ val Typography = Typography(
                 fontFamily = Inter,
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,
-                letterSpacing = 0.sp
+                letterSpacing = 0.sp,
         ),
         bodyLarge = TextStyle(
                 fontFamily = Inter,
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,
+                letterSpacing = 0.sp
+        ),
+        titleMedium = TextStyle(
+                fontFamily = Inter,
+                fontWeight = FontWeight.Bold,
+                fontSize = 20.sp,
                 letterSpacing = 0.sp
         ),
         titleLarge = TextStyle(
