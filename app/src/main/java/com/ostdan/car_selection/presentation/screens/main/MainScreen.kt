@@ -41,13 +41,12 @@ fun MainScreen(
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(17.dp)
     ) {
-        LazyColumn(
+        Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(17.dp),
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            item {
                 Row {
                     IdentificationCard()
                     Icon(
@@ -62,17 +61,16 @@ fun MainScreen(
                             .background(Black)
                     )
                 }
-            }
-            item { LegalVerificationCard() }
+            LegalVerificationCard()
         }
-        AnimatedAnswerButton()
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(15.dp),
+            contentPadding = PaddingValues(bottom = 16.dp)
         ) {
             viewState.checkSession?.let {
-                items(it.checkGroupPreviewList) { checkGroupPreview ->
+                items(it.types) { type ->
                     Text(
-                        text = checkGroupPreview.type,
+                        text = type.type,
                         style = MaterialTheme.typography.headlineMedium,
                         color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.padding(0.dp, 8.dp)
@@ -84,7 +82,7 @@ fun MainScreen(
                         horizontalArrangement = Arrangement.spacedBy(15.dp),
                         verticalArrangement = Arrangement.spacedBy(15.dp),
                         content = {
-                            checkGroupPreview.checkGroupList.forEachIndexed { _, checkGroup ->
+                            type.checkGroups.forEachIndexed { _, checkGroup ->
                                 CheckGroupCard(checkGroupDTO = checkGroup)
                             }
                         })

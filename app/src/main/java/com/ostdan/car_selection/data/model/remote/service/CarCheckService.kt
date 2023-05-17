@@ -8,10 +8,9 @@ import retrofit2.http.Query
 
 interface CarCheckService {
 
-    @GET("/check_session/search")
-    fun getCheckSession(
-        @Query("vin") vin: String,
-        @Query("gov_number") govNumber: String,
-        @Query("access_token") accessToken: String
+    @GET("/car/vin")
+    fun getCheckSessionByVin(
+        @Query("searchQuery") vin: String,
+        @Query("userId") accessToken: String
     ): Flow<Resource<CheckSessionResponse>>
 }

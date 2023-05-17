@@ -20,11 +20,14 @@ class CarCheckRepositoryImpl @Inject constructor(
         accessToken: String
     ): Flow<CheckSessionDTO> {
         return flow {
-            carCheckService.getCheckSession(vin, govNumber, accessToken).collect { resource ->
+            carCheckService.getCheckSessionByVin(vin, accessToken).collect { resource ->
                 if (resource is Resource.Success) {
                     emit(
                         checkSessionMapper.map(resource.data)
                     )
+                }
+                else if (resource is Resource.Error) {
+                    println(resource.errorData)
                 }
             }
         }

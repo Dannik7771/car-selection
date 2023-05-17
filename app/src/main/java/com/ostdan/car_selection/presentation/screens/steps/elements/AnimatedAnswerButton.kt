@@ -104,6 +104,6 @@ fun AnimatedAnswerButton(stepAnswer: StepAnswer) {
 @Composable
 fun AnimatedButtonPreview() {
     CarselectionTheme {
-        AnimatedAnswerButton()
+        //AnimatedAnswerButton()
     }
 }

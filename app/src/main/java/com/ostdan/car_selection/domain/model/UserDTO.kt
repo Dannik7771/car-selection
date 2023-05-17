@@ -1,7 +1,9 @@
 package com.ostdan.car_selection.domain.model
 
-data class UserDTO (
-    val access_token: String,
+data class User (
+    val userId: String,
     val name: String,
-    val email: String
+    val password: String,
+
+    val sessions: MutableList<CheckSessionDTO> = mutableListOf(),
 )

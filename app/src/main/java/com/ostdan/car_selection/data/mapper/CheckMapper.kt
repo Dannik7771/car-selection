@@ -2,20 +2,40 @@ package com.ostdan.car_selection.data.mapper
 
 import com.ostdan.car_selection.data.model.remote.CheckResponse
 import com.ostdan.car_selection.domain.model.CheckDTO
-import javax.inject.Inject
 
-class CheckMapper @Inject constructor(
-    private val stepMapper: StepMapper
-) {
-    fun map(response: CheckResponse) : CheckDTO =
-        CheckDTO(
-            stepList = response.stepList?.map{stepMapper.map(it)}.orEmpty(),
-            title = response.title.orEmpty(),
-            status = response.status.orEmpty(),
-            description = response.description.orEmpty(),
-            description_warning = response.descriptionWarning.orEmpty(),
-            description_alert = response.descriptionAlert.orEmpty(),
-            category = response.category.orEmpty(),
-            images = response.images.orEmpty()
+class CheckMapper {
+    fun map(response: CheckResponse): CheckDTO = CheckDTO(
+        checkId = response.checkId,
+        title = response.title,
+        status = response.status,
+        description = response.description,
+        descriptionWarning = response.descriptionWarning,
+        descriptionAlert = response.descriptionAlert,
+        category = response.category,
+        image = response.image,
+        steps = response.steps.map { map(it) }
+    )
+
+    private fun map(step: CheckResponse.Step): CheckDTO.StepDTO = CheckDTO.StepDTO(
+        stepId = step.stepId,
+        title = step.title,
+        description = step.description,
+        descriptionWarning = step.descriptionWarning,
+        stepImage = step.stepImage,
+        question = map(step.question)
+    )
+
+    private fun map(question: CheckResponse.Step.Question): CheckDTO.StepDTO.QuestionDTO =
+        CheckDTO.StepDTO.QuestionDTO(
+            questionId = question.questionId,
+            text = question.text,
+            answers = question.answers.map { map(it) },
+            selectedAnswerId = question.selectedAnswerId
+        )
+
+    private fun map(answer: CheckResponse.Step.Question.Answer): CheckDTO.StepDTO.QuestionDTO.AnswerDTO =
+        CheckDTO.StepDTO.QuestionDTO.AnswerDTO(
+            answerId = answer.answerId,
+            text = answer.text
         )
 }

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Подбор авто</string>
     <string name="mock">mock_resource</string>
+    <string name="url_image_mock">"https://live.staticflickr.com/65535/52904456049_e76a17fa9e_z.jpg"</string>
 </resources>

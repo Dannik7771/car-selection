@@ -10,8 +10,8 @@ import com.ostdan.car_selection.ui.theme.CarselectionTheme
 @Composable
 fun AnswerRow(stepAnswer: StepAnswer) {
     Row(modifier = Modifier.fillMaxWidth()) {
-        AnimatedAnswerButton()
-        AnimatedAnswerButton()
+        //AnimatedAnswerButton()
+        //AnimatedAnswerButton()
     }
 }
 
@@ -22,6 +22,6 @@ data class StepAnswer(val answerId: String?,
 @Composable
 fun AnswerRowPreview() {
     CarselectionTheme {
-        AnswerRow()
+        //AnswerRow()
     }
 }
