@@ -9,6 +9,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -22,7 +23,6 @@ import com.ostdan.car_selection.R
 import com.ostdan.car_selection.presentation.screens.main.elements.CheckGroupCard
 import com.ostdan.car_selection.presentation.screens.main.elements.IdentificationCard
 import com.ostdan.car_selection.presentation.screens.main.elements.LegalVerificationCard
-import com.ostdan.car_selection.presentation.screens.steps.elements.AnimatedAnswerButton
 import com.ostdan.car_selection.ui.theme.Black
 import com.ostdan.car_selection.ui.theme.CarselectionTheme
 import com.ostdan.car_selection.ui.theme.White
@@ -30,10 +30,15 @@ import com.ostdan.car_selection.ui.theme.White
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MainScreen(
-   /* navController: NavHostController,*/
-    viewModel: MainViewModel = hiltViewModel())
+    viewModel: MainViewModel = hiltViewModel(),
+    onNavigateToCheckGroupScreen: () -> Unit
+)
 {
     val viewState by viewModel.state.collectAsState()
+
+    LaunchedEffect(true) {
+        viewModel.fetchUser()
+    }
 
     Column(
         modifier = Modifier
@@ -83,14 +88,12 @@ fun MainScreen(
                         verticalArrangement = Arrangement.spacedBy(15.dp),
                         content = {
                             type.checkGroups.forEachIndexed { _, checkGroup ->
-                                CheckGroupCard(checkGroupDTO = checkGroup)
+                                CheckGroupCard(checkGroupDTO = checkGroup,
+                                    onNavigateToCheckGroupScreen = onNavigateToCheckGroupScreen
+                                )
                             }
-                        })
-                    /*LazyVerticalGrid(columns = GridCells.Adaptive(100.dp)) {
-                    items(checkGroupPreview.checkGroupList) { checkGroupPreview ->
-                        CheckGroupCard(checkGroupDTO = checkGroupPreview)
-                    }
-                }*/
+                        }
+                    )
                 }
             }
         }
@@ -101,6 +104,6 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview() {
     CarselectionTheme {
-        MainScreen()
+
     }
 }

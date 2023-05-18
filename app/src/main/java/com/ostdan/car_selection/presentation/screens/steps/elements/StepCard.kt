@@ -13,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ostdan.car_selection.presentation.components.CardView
 import com.ostdan.car_selection.presentation.components.WarningIcon
-import com.ostdan.car_selection.presentation.screens.checkpoints.elements.CheckpointCard
 import com.ostdan.car_selection.ui.theme.CarselectionTheme
 
 @Composable

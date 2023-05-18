@@ -12,9 +12,9 @@ class FetchCheckSessionUseCase @Inject constructor(
     operator fun invoke(
         govNumber: String,
         vin: String,
-        accessToken: String
+        userId: String
     ): Flow<CheckSessionDTO> {
         Log.d("FetchCheckSession", "invoke")
-        return carCheckRepository.fetchCheckSession(govNumber, vin, accessToken)
+        return carCheckRepository.fetchCheckSession(govNumber, vin, userId)
     }
 }

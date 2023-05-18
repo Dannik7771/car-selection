@@ -1,6 +1,9 @@
 package com.ostdan.car_selection.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.ostdan.car_selection.domain.usecase.FetchCheckSessionUseCase
+import com.ostdan.car_selection.domain.usecase.FetchUserUseCase
 import com.ostdan.car_selection.presentation.screens.main.MainViewModel
 import dagger.Module
 import dagger.Provides
@@ -13,6 +16,8 @@ import javax.inject.Singleton
 class PresentationModule {
     @Singleton
     @Provides
-    fun provideMainViewModel(useCase: FetchCheckSessionUseCase):
-            MainViewModel = MainViewModel(useCase)
+    fun provideMainViewModel(carSessionUseCase: FetchCheckSessionUseCase,
+                             userUseCase: FetchUserUseCase,
+                             dataStore: DataStore<Preferences>):
+            MainViewModel = MainViewModel(carSessionUseCase, userUseCase, dataStore)
 }

@@ -20,12 +20,13 @@ import com.ostdan.car_selection.ui.theme.DarkBlue36
 @Composable
 fun CheckGroupCard(
     modifier: Modifier = Modifier,
-    checkGroupDTO: CheckSessionDTO.TypeDTO.CheckGroupDTO
+    checkGroupDTO: CheckSessionDTO.TypeDTO.CheckGroupDTO,
+    onNavigateToCheckGroupScreen: () -> Unit
 ) {
     CardView(
         color = MaterialTheme.colorScheme.surface,
         modifier = Modifier
-            .clickable { /* обработчик клика */ }
+            .clickable(onClick = onNavigateToCheckGroupScreen)
             .padding(5.dp)
             .widthIn(min = 100.dp, max = 100.dp)
             .heightIn(min = 100.dp, max = 100.dp)

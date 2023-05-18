@@ -7,7 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CarCheckService {
-
     @GET("/car/vin")
     fun getCheckSessionByVin(
         @Query("searchQuery") vin: String,

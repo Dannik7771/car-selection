@@ -1,4 +1,4 @@
-package com.ostdan.car_selection.presentation.screens.checkpoints.elements
+package com.ostdan.car_selection.presentation.screens.checkgroups.elements
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
