@@ -20,6 +20,10 @@ val Grey = Color(0xFF7C7F80)
 val Grey60 = Color(0xFF98A2A3)
 val Grey90 = Color(0xFFE8EAEA)
 
+//Not in color scheme
+val DangerColor = Color(0xFFE4DFCD)
+val AlertColor = Color(0xFFE4CDCD)
+
 val SpotColor = Color(0x55000000)
 
 val ImageBackColor = Color(0x191B3032)

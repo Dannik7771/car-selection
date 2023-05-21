@@ -18,16 +18,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ostdan.car_selection.R
+import com.ostdan.car_selection.domain.model.CheckGroupDTO
 import com.ostdan.car_selection.presentation.components.CardView
 import com.ostdan.car_selection.ui.theme.CarselectionTheme
 import com.ostdan.car_selection.ui.theme.ImageBackColor
 
 @Composable
-fun CheckpointCard() {
+fun CheckCard(check: CheckGroupDTO.CategoryDTO.CheckDTO,
+              onNavigateToCheckScreen: (Any?) -> Unit) {
     CardView(
         color = MaterialTheme.colorScheme.surface,
         modifier = Modifier
-            .clickable { /* обработчик клика */ }
+            .clickable(onClick = { onNavigateToCheckScreen(check.checkId)} )
             .padding(5.dp, 10.dp)
             .heightIn(min = 55.dp, max = 55.dp)
     ) {
@@ -50,13 +52,13 @@ fun CheckpointCard() {
             }
             Column(Modifier.weight(4f)) {
                 Text(
-                    text = "Крепление дверей",
+                    text = check.title,
                     style = MaterialTheme.typography.headlineMedium,
                     textAlign = TextAlign.Left,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "в процессе выполнения",
+                    text = check.status,
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Left,
                     color = MaterialTheme.colorScheme.onSurface
@@ -73,6 +75,6 @@ fun CheckpointCard() {
 @Composable
 fun CheckpointCardPreview() {
     CarselectionTheme {
-        CheckpointCard()
+        //CheckCard()
     }
 }

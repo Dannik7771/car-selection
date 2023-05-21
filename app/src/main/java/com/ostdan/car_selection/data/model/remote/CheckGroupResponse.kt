@@ -20,7 +20,7 @@ data class CheckGroupResponse(
         data class Check(
             @SerializedName("checkId") val checkId: String,
             @SerializedName("title") val title: String,
-            @SerializedName("status") val status: String?,
+            @SerializedName("status") val status: String,
             @SerializedName("image") val image: String
         )
     }

@@ -2,8 +2,9 @@ package com.ostdan.car_selection.data.mapper
 
 import com.ostdan.car_selection.data.model.remote.CheckResponse
 import com.ostdan.car_selection.domain.model.CheckDTO
+import javax.inject.Inject
 
-class CheckMapper {
+class CheckMapper @Inject constructor()  {
     fun map(response: CheckResponse): CheckDTO = CheckDTO(
         checkId = response.checkId,
         title = response.title,
@@ -21,7 +22,9 @@ class CheckMapper {
         title = step.title,
         description = step.description,
         descriptionWarning = step.descriptionWarning,
+        type = CheckDTO.StepDTO.StepTypeDTO.fromText(step.type),
         stepImage = step.stepImage,
+        additionalData = map(step.additionalData),
         question = map(step.question)
     )
 
@@ -36,6 +39,13 @@ class CheckMapper {
     private fun map(answer: CheckResponse.Step.Question.Answer): CheckDTO.StepDTO.QuestionDTO.AnswerDTO =
         CheckDTO.StepDTO.QuestionDTO.AnswerDTO(
             answerId = answer.answerId,
-            text = answer.text
+            text = answer.text,
+            textWhenSelected = answer.textWhenSelected
+        )
+
+    private fun map(stepData: CheckResponse.Step.StepData?): CheckDTO.StepDTO.StepDataDTO =
+        CheckDTO.StepDTO.StepDataDTO(
+            vin = stepData?.vin,
+            govNumber = stepData?.govNumber
         )
 }

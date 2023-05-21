@@ -31,7 +31,7 @@ import com.ostdan.car_selection.ui.theme.White
 @Composable
 fun MainScreen(
     viewModel: MainViewModel = hiltViewModel(),
-    onNavigateToCheckGroupScreen: () -> Unit
+    onNavigateToCheckGroupScreen: (Any?) -> Unit
 )
 {
     val viewState by viewModel.state.collectAsState()

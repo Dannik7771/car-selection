@@ -1,4 +1,4 @@
-package com.ostdan.car_selection.presentation.screens.steps.elements
+package com.ostdan.car_selection.presentation.screens.checks.elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,8 +22,8 @@ import com.ostdan.car_selection.ui.theme.SmallSecondaryButtonColor
 fun AddPhotoButton(modifier: Modifier = Modifier) {
     Row(
         modifier = Modifier
-            .clickable { /* обработчик клика */ }
             .clip(RoundedCornerShape(10.dp))
+            .clickable { /* обработчик клика */ }
             .background(SmallSecondaryButtonColor)
             .padding(6.dp)
             .then(modifier),

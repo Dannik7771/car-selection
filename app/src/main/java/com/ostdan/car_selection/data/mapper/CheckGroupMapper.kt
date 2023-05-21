@@ -4,7 +4,7 @@ import com.ostdan.car_selection.data.model.remote.CheckGroupResponse
 import com.ostdan.car_selection.domain.model.CheckGroupDTO
 import javax.inject.Inject
 
-class CheckGroupMapper {
+class CheckGroupMapper @Inject constructor() {
     fun map(response: CheckGroupResponse): CheckGroupDTO =
         CheckGroupDTO(
             checkGroupId = response.checkGroupId,

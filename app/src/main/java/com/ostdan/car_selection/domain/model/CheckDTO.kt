@@ -16,7 +16,9 @@ data class CheckDTO(
         val title: String,
         val description: String,
         val descriptionWarning: String,
+        val type: StepTypeDTO?,
         val stepImage: String,
+        val additionalData: StepDataDTO?,
         val question: QuestionDTO,
     ) {
         data class QuestionDTO(
@@ -28,7 +30,20 @@ data class CheckDTO(
             data class AnswerDTO (
                 val answerId: String,
                 val text: String,
+                val textWhenSelected: String
             )
         }
+        enum class StepTypeDTO {
+            Default, VINCheck;
+            companion object {
+                fun fromText(name: String): StepTypeDTO? {
+                    return values().find { it.name == name }
+                }
+            }
+        }
+        data class StepDataDTO (
+            val vin: String? = null,
+            val govNumber: String? = null,
+        )
     }
 }

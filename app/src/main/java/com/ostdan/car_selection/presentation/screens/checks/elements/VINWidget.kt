@@ -1,4 +1,4 @@
-package com.ostdan.car_selection.presentation.screens.steps.elements
+package com.ostdan.car_selection.presentation.screens.checks.elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -15,16 +15,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ostdan.car_selection.domain.model.CheckDTO
 import com.ostdan.car_selection.ui.theme.*
 
 @Composable
-fun VINWidget(modifier: Modifier = Modifier) {
+fun VINWidget(data: CheckDTO.StepDTO.StepDataDTO) {
     Row (
         modifier = Modifier
             .clip(RoundedCornerShape(10.dp))
             .background(Black)
-            .padding(8.dp)
-            .then(modifier),
+            .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically)
     {
         Text(
@@ -37,7 +37,7 @@ fun VINWidget(modifier: Modifier = Modifier) {
             )
         )
         Text(
-            text = "XWFGB6EC1 B000 1174",
+            text = data.vin.toString(),
             maxLines = 1,
             style = TextStyle(
                 color = LightBlue95,
@@ -55,6 +55,6 @@ fun VINWidget(modifier: Modifier = Modifier) {
 @Composable
 fun VINWidgetPreview() {
     CarselectionTheme {
-        VINWidget()
+        //VINWidget()
     }
 }

@@ -21,12 +21,12 @@ import com.ostdan.car_selection.ui.theme.DarkBlue36
 fun CheckGroupCard(
     modifier: Modifier = Modifier,
     checkGroupDTO: CheckSessionDTO.TypeDTO.CheckGroupDTO,
-    onNavigateToCheckGroupScreen: () -> Unit
+    onNavigateToCheckGroupScreen: (Any?) -> Unit
 ) {
     CardView(
         color = MaterialTheme.colorScheme.surface,
         modifier = Modifier
-            .clickable(onClick = onNavigateToCheckGroupScreen)
+            .clickable(onClick = { onNavigateToCheckGroupScreen(checkGroupDTO.checkGroupId)} )
             .padding(5.dp)
             .widthIn(min = 100.dp, max = 100.dp)
             .heightIn(min = 100.dp, max = 100.dp)
@@ -39,13 +39,17 @@ fun CheckGroupCard(
                 contentDescription = stringResource(id = R.string.mock),
                 modifier = Modifier.weight(2f)
             )
-            Text(
-                text = checkGroupDTO.name,
-                style = MaterialTheme.typography.labelSmall,
-                textAlign = TextAlign.Center,
-                color = DarkBlue36,
+            Box(
+                contentAlignment = Alignment.Center,
                 modifier = Modifier.weight(1f)
-            )
+            ) {
+                Text(
+                    text = checkGroupDTO.name,
+                    style = MaterialTheme.typography.labelSmall,
+                    textAlign = TextAlign.Center,
+                    color = DarkBlue36,
+                )
+            }
         }
     }
 }

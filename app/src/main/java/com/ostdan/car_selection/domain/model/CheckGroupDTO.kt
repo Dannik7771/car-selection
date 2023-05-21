@@ -14,7 +14,7 @@ data class CheckGroupDTO(
         data class CheckDTO(
             val checkId: String,
             val title: String,
-            val status: String?,
+            val status: String,
             val image: String
         )
     }

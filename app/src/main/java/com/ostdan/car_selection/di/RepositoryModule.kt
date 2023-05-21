@@ -1,13 +1,21 @@
 package com.ostdan.car_selection.di
 
+import com.ostdan.car_selection.data.mapper.CheckGroupMapper
+import com.ostdan.car_selection.data.mapper.CheckMapper
 import com.ostdan.car_selection.data.mapper.CheckSessionMapper
 import com.ostdan.car_selection.data.mapper.UserMapper
-import com.ostdan.car_selection.data.model.remote.service.CarCheckService
+import com.ostdan.car_selection.data.model.remote.service.CheckGroupService
+import com.ostdan.car_selection.data.model.remote.service.CheckService
+import com.ostdan.car_selection.data.model.remote.service.CheckSessionService
 import com.ostdan.car_selection.data.model.remote.service.UserService
-import com.ostdan.car_selection.data.repository.CarCheckRepositoryImpl
+import com.ostdan.car_selection.data.repository.CheckGroupRepositoryImpl
+import com.ostdan.car_selection.data.repository.CheckRepositoryImpl
+import com.ostdan.car_selection.data.repository.CheckSessionRepositoryImpl
 import com.ostdan.car_selection.data.repository.UserRepositoryImpl
-import com.ostdan.car_selection.domain.repository.CarCheckRepository
+import com.ostdan.car_selection.domain.repository.CheckSessionRepository
 import com.ostdan.car_selection.data.utilities.FlowResourceCallAdapterFactory
+import com.ostdan.car_selection.domain.repository.CheckGroupRepository
+import com.ostdan.car_selection.domain.repository.CheckRepository
 import com.ostdan.car_selection.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -23,9 +31,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideCarCheckRepository(
-        service: CarCheckService,
+        service: CheckSessionService,
         mapper: CheckSessionMapper
-    ): CarCheckRepository = CarCheckRepositoryImpl(
+    ): CheckSessionRepository = CheckSessionRepositoryImpl(
         service, mapper
     )
 
@@ -35,6 +43,24 @@ class RepositoryModule {
         service: UserService,
         mapper: UserMapper
     ): UserRepository = UserRepositoryImpl(
+        service, mapper
+    )
+
+    @Singleton
+    @Provides
+    fun provideCheckGroupRepository(
+        service: CheckGroupService,
+        mapper: CheckGroupMapper
+    ): CheckGroupRepository = CheckGroupRepositoryImpl(
+        service, mapper
+    )
+
+    @Singleton
+    @Provides
+    fun provideCheckRepository(
+        service: CheckService,
+        mapper: CheckMapper
+    ): CheckRepository = CheckRepositoryImpl(
         service, mapper
     )
 
@@ -50,13 +76,25 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideCarCheckService(retrofit: Retrofit): CarCheckService {
-        return retrofit.create(CarCheckService::class.java)
+    fun provideCheckSessionService(retrofit: Retrofit): CheckSessionService {
+        return retrofit.create(CheckSessionService::class.java)
     }
 
     @Provides
     @Singleton
     fun provideUserService(retrofit: Retrofit): UserService {
         return retrofit.create(UserService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCheckGroupService(retrofit: Retrofit): CheckGroupService {
+        return retrofit.create(CheckGroupService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCheckService(retrofit: Retrofit): CheckService {
+        return retrofit.create(CheckService::class.java)
     }
 }

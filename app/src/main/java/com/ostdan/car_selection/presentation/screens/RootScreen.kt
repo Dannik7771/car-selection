@@ -1,6 +1,5 @@
 package com.ostdan.car_selection.presentation.screens
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -15,13 +14,14 @@ fun RootScreen(
     navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { TopBar(navController) },
         containerColor = MaterialTheme.colorScheme.background,
-        content = {
-            paddingValues -> AppNavGraph(
-            navController = navController,
-            startDestination = Screens.Main.name,
-            paddingValues)
+        content = { paddingValues ->
+            AppNavGraph(
+                navController = navController,
+                startDestination = Screens.Main.route,
+                paddingValues = paddingValues
+            )
         }
     )
 }
