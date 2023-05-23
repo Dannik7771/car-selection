@@ -39,7 +39,8 @@ data class CheckResponse(
             data class Answer (
                 @SerializedName("answerId") val answerId: String,
                 @SerializedName("text") val text: String,
-                @SerializedName("textWhenSelected") val textWhenSelected: String
+                @SerializedName("textWhenSelected") val textWhenSelected: String,
+                @SerializedName("isAlert") val isAlert: Boolean
             )
         }
         @Serializable

@@ -30,7 +30,8 @@ data class CheckDTO(
             data class AnswerDTO (
                 val answerId: String,
                 val text: String,
-                val textWhenSelected: String
+                val textWhenSelected: String,
+                val isAlert: Boolean
             )
         }
         enum class StepTypeDTO {

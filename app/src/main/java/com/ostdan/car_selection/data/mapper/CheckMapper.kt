@@ -40,7 +40,8 @@ class CheckMapper @Inject constructor()  {
         CheckDTO.StepDTO.QuestionDTO.AnswerDTO(
             answerId = answer.answerId,
             text = answer.text,
-            textWhenSelected = answer.textWhenSelected
+            textWhenSelected = answer.textWhenSelected,
+            isAlert = answer.isAlert
         )
 
     private fun map(stepData: CheckResponse.Step.StepData?): CheckDTO.StepDTO.StepDataDTO =

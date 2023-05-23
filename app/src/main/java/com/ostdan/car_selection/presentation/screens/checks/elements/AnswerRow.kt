@@ -13,12 +13,12 @@ import com.ostdan.car_selection.ui.theme.CarselectionTheme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun AnswerRow(question: CheckDTO.StepDTO.QuestionDTO) {
+fun AnswerRow(stepId: String, question: CheckDTO.StepDTO.QuestionDTO) {
     FlowRow(modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         content = {
             question.answers.forEachIndexed { _, answer ->
-                AnimatedAnswerButton(question, answer)
+                AnimatedAnswerButton(stepId = stepId, question = question, answer = answer)
             }
         }
     )

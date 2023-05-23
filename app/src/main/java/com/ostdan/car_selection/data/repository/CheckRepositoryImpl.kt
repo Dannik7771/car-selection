@@ -28,4 +28,25 @@ class CheckRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun updateAnswer(
+        checkId: String,
+        stepId: String,
+        answerId: String,
+        selected: Boolean,
+        accessToken: String
+    ): Flow<CheckDTO> {
+        return flow {
+            checkService.updateAnswer(checkId, stepId, answerId, selected, accessToken).collect { resource ->
+                if (resource is Resource.Success) {
+                    emit(
+                        checkMapper.map(resource.data)
+                    )
+                }
+                else if (resource is Resource.Error) {
+                    println(resource.errorData)
+                }
+            }
+        }
+    }
 }

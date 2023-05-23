@@ -24,7 +24,7 @@ import com.ostdan.car_selection.ui.theme.CarselectionTheme
 fun StepCard(step: CheckDTO.StepDTO) {
     CardView(color = MaterialTheme.colorScheme.surface,
         modifier = Modifier
-            .padding(10.dp)
+            .padding(10.dp, 0.dp)
             .fillMaxWidth()) {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -41,7 +41,12 @@ fun StepCard(step: CheckDTO.StepDTO) {
                     verticalAlignment = Alignment.Top,
                     horizontalArrangement = Arrangement.spacedBy(7.dp)
                 ) {
-                    WarningIcon()
+                    //Если выбранный элемент с isAlert==true
+                    if (step.question.answers.find {
+                            it.answerId == step.question.selectedAnswerId &&
+                                    it.isAlert
+                    } != null)
+                        WarningIcon()
                     Text(
                         text = step.title,
                         style = MaterialTheme.typography.headlineLarge,
@@ -90,7 +95,7 @@ fun StepCard(step: CheckDTO.StepDTO) {
                     color = MaterialTheme.colorScheme.onSurface,
                     lineHeight = 19.sp
                 )
-                AnswerRow(step.question)
+                AnswerRow(step.stepId, step.question)
             }
         }
     }

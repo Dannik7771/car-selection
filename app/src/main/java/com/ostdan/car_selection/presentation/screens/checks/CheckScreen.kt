@@ -1,11 +1,16 @@
 package com.ostdan.car_selection.presentation.screens.checks
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.gestures.ScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,41 +39,41 @@ fun CheckScreen(
         viewModel.fetchCheck()
     }
 
-    Column(
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         viewState.check?.let {
-        Column(
-            modifier = Modifier
-                .padding(20.dp, 10.dp),
-            verticalArrangement = Arrangement.spacedBy(15.dp)
-        ) {
-            if (it.descriptionAlert.isNotEmpty())
-                AlertCard(it.descriptionAlert)
-            if (it.descriptionWarning.isNotEmpty())
-                WarningCard(it.descriptionWarning)
-            Text(
-                text = it.description,
-                style = MaterialTheme.typography.bodyMedium,
-                textAlign = TextAlign.Left,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            /*Async*/Image(
-            painter = painterResource(id = R.drawable.mock),
-            /*model = stringResource(R.string.url_image_mock),*/
-            contentDescription = stringResource(id = R.string.mock)
-            )
-                Text(
-                    text = "Проверьте следующие пункты:",
-                    style = MaterialTheme.typography.headlineLarge,
-                    textAlign = TextAlign.Left,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-        }
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                items(it.steps){ step ->
-                    StepCard(step)
+            item {
+                Column(
+                    modifier = Modifier
+                        .padding(PaddingValues(start = 20.dp, top = 10.dp, end = 20.dp)),
+                    verticalArrangement = Arrangement.spacedBy(15.dp)
+                ) {
+                    if (it.descriptionAlert.isNotEmpty())
+                        AlertCard(it.descriptionAlert)
+                    if (it.descriptionWarning.isNotEmpty())
+                        WarningCard(it.descriptionWarning)
+                    Text(
+                        text = it.description,
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Left,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    /*Async*/Image(
+                    painter = painterResource(id = R.drawable.mock),
+                    /*model = stringResource(R.string.url_image_mock),*/
+                    contentDescription = stringResource(id = R.string.mock)
+                    )
+                    Text(
+                        text = "Проверьте следующие пункты:",
+                        style = MaterialTheme.typography.headlineLarge,
+                        textAlign = TextAlign.Left,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
                 }
+            }
+            items(it.steps) { step ->
+                StepCard(step)
             }
         }
     }

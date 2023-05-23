@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ostdan.car_selection.data.datastore.UserScheme
 import com.ostdan.car_selection.domain.usecase.FetchCheckUseCase
+import com.ostdan.car_selection.domain.usecase.UpdateAnswerUseCase
 import com.ostdan.car_selection.presentation.state.ViewStateCheck
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class CheckViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val fetchCheckUseCase: FetchCheckUseCase,
+    private val updateAnswerUseCase: UpdateAnswerUseCase,
     private val userDataStore: DataStore<Preferences>
 ): ViewModel() {
 
@@ -37,6 +39,29 @@ class CheckViewModel @Inject constructor(
                     .flowOn(Dispatchers.Default)
                     .onStart {
                         _checkState.value = ViewStateCheck(true, null)
+                    }
+                    .onCompletion {
+                    }
+                    .collect { check ->
+                        _checkState.value = ViewStateCheck(false, check)
+                    }
+            }
+        }
+    }
+
+    fun updateAnswer(stepId: String, answerId: String, selected: Boolean) {
+        viewModelScope.launch {
+            userDataStore.data.collect { preferences ->
+                updateAnswerUseCase(
+                    checkId = checkId,
+                    stepId = stepId,
+                    answerId = answerId,
+                    selected = selected,
+                    accessToken = preferences[UserScheme.KEY_USER_ID].toString()
+                )
+                    .flowOn(Dispatchers.Default)
+                    .onStart {
+                        _checkState.value = ViewStateCheck(true, _checkState.value.check)
                     }
                     .onCompletion {
                     }

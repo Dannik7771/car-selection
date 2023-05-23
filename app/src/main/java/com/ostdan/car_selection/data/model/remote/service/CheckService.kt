@@ -12,4 +12,13 @@ interface CheckService {
         @Query("checkId") checkGroupId: String,
         @Query("userId") accessToken: String
     ): Flow<Resource<CheckResponse>>
+
+    @GET("/check/step/answer")
+    fun updateAnswer(
+        @Query("checkId") checkId: String,
+        @Query("stepId") stepId: String,
+        @Query("answerId") answerId: String,
+        @Query("selected") selected: Boolean,
+        @Query("userId") accessToken: String
+    ): Flow<Resource<CheckResponse>>
 }
